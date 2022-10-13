@@ -1,6 +1,6 @@
 # Interfacing-a-Digital-INPUT-push-button-to-LPC2148-ARM-7-Microcontroller-
-Name :
-Roll no 
+Name : Jeswanth.S
+Roll no 212221230042
 Date of experiment :
 
 Ex. No. : 3
@@ -116,14 +116,46 @@ Step 9: Select the hex file from the Kiel program folder and import the program 
 
 
 ### Kiel - Program  
+```
+#include<LPC214X.h>      //Define LPC2148 Header File
+#define led (1<<2)       //led macro for pin 2 of port0
+#define sw (1<<10)       // sw macro for pin 10 of port0
+int main(void)
+{
+   unsigned int x;
+   IO0DIR|= (~sw);       //Configuration P1.24 - P1.31 as input
+   IO0DIR|= led;         //Configuration P1.16 - P1.23 as Output
+   while(1)
+	  {
+	       x=IOPIN0 & sw;  //save status of sw in variable x
+		   if(x==sw)       //if switch open
+		     {
+			    IOCLR0|=led;   //LED OFF
+			 }
+			 else              //if switch close
+			 {
+			    IOSET0|=led;   //LED ON
+			 }
+		 }
+}
+
+```
+
+
+
+### Output screen shots :
+<img width="817" alt="exp03" src="https://user-images.githubusercontent.com/94155480/195490843-a8c8db23-c0cd-4d61-b666-96914c49fb57.png">
+
+
+<img width="818" alt="exp 03 -2" src="https://user-images.githubusercontent.com/94155480/195490865-91c9e31f-d1ec-4213-b34e-cece79b41e5a.png">
+
+
+
+### Circuit Diagram:
+
+<img width="689" alt="image" src="https://user-images.githubusercontent.com/94155480/195491414-e3e1cf77-702f-4193-9579-7cdd3569cb3a.png">
+
 
 
 ### Result :
 Interfacing a digital output with ARM microcontroller is executed 
-
-### Output screen shots :
-
-
-
-
-
